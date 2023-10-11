@@ -85,7 +85,7 @@
 
         combo_grave {
             timeout-ms = <20>;
-            key-positions = <37 38>;
+            key-positions = <38 39>;
             bindings = <&kp GRAVE>;
         };
 
@@ -154,7 +154,7 @@
 
         combo_layertogglegaming {
             timeout-ms = <20>;
-            key-positions = <41 44>;
+            key-positions = <41 43>;
             bindings = <&tog GAMING>;
         };
 
