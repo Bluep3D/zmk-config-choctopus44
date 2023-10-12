@@ -70,7 +70,7 @@
     // Reset
 
         compatible = "zmk,combos";
-        combo_esc {
+        combo_reset {
             timeout-ms = <20>;
             key-positions = <11 23 36>;
             bindings = <&bootloader>;
