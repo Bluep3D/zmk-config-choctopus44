@@ -67,6 +67,14 @@
 / {
     combos {
 
+    // Reset
+
+        compatible = "zmk,combos";
+        combo_esc {
+            timeout-ms = <20>;
+            key-positions = <11 23 36>;
+            bindings = <&bootloader>;
+        };
 
     // Key swaps
 
@@ -90,7 +98,6 @@
         };
 
     // Locks
-
 
         combo_numlock {
             timeout-ms = <30>;
@@ -124,7 +131,6 @@
             bindings = <&kp LS(INS)>;
         };
 
-
     // Modifiers
 
         combo_lctrl {
@@ -149,7 +155,6 @@
             bindings = <&sk LS(LCTRL)>;
         };
 
-
     // Layers
 
         combo_layertogglegaming {
@@ -158,12 +163,11 @@
             bindings = <&tog GAMING>;
         };
 
-
     // Bluetooth
 
         combo_bluetoothclear {
             timeout-ms = <20>;
-            key-positions = <5 17 29>;
+            key-positions = <5 29>;
             bindings = <&bt BT_CLR>;
         };
         combo_bluetooth1 {
@@ -186,12 +190,6 @@
             key-positions = <4 28>;
             bindings = <&bt BT_SEL 3>;
         };
-        combo_bluetooth5 {
-            timeout-ms = <20>;
-            key-positions = <5 29>;
-            bindings = <&bt BT_SEL 4>;
-        };
-
 
     // Other
 
