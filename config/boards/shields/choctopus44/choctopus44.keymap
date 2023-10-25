@@ -13,7 +13,7 @@
 #define QWERTY 1
 #define GAMING 2
 #define NUMBER 3
-#define NAVI 4
+#define NAVGTN 4
 
 
 #define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
@@ -289,13 +289,13 @@
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-     &lt NAVI TAB       &ralt_apos      &ralt_comma     &ralt_dot       &ralt_p         &kp Y                           &kp F           &kp G           &kp C           &kp R           &kp L           &kp FSLH
+     &lt NAVGTN TAB     &ralt_apos      &ralt_comma     &ralt_dot       &ralt_p         &kp Y                           &kp F           &kp G           &kp C           &kp R           &kp L           &kp FSLH
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
         &kp LCTRL       &ralt_a         &ralt_o         &ralt_e         &ralt_u         &ralt_i                         &kp D           &kp H           &kp T           &kp N           &kp S           &kp MINUS
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
         &kp LSHFT       &kp SEMI        &kp Q           &kp J           &kp K           &kp X         &tog QWERTY       &kp B           &kp M           &kp W           &kp V           &kp Z       &mt RSHFT EQUAL
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &kp LALT        &kp SPACE   &lt NUMBER SPACE                 &lt NAVI BSPC      &kp RALT     &mt LGUI RET       &trans
+                                        &trans          &kp LALT        &kp SPACE   &lt NUMBER SPACE                &lt NAVGTN BSPC     &kp RALT     &mt LGUI RET       &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
@@ -349,7 +349,7 @@
                 };
 
                 navigation_layer {
-                        label = "NAVI";
+                        label = "NAVGTN";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
