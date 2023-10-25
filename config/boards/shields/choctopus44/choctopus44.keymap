@@ -12,9 +12,8 @@
 #define DVORAK 0
 #define QWERTY 1
 #define GAMING 2
-#define ACCENTS 3       // Keybinds for AutoHotKey to pick up and convert to other characters as needed.
-#define NUMBER 4
-#define NAVI 5
+#define NUMBER 3
+#define NAVI 4
 
 
 #define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
@@ -32,6 +31,22 @@
     flavor = "balanced";
 };
 
+/ {
+    macros {
+
+        macro_githublink: macro_githublink {
+            label = "macro_githublink";
+            compatible = "zmk,behavior-macro";
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp H &kp T &kp T &kp P &kp S &kp COLON &kp FSLH &kp FSLH>
+                , <&macro_tap &kp G &kp I &kp T &kp H &kp U &kp B &kp DOT &kp C &kp O &kp M &kp FSLH>
+                , <&macro_tap &kp W &kp N0 &kp U &kp L &kp D &kp FSLH>
+                ;
+        };
+    };
+};
 
 / {
     behaviors {
@@ -48,7 +63,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Keycode Mods
+        // Mod-Morph Keycodes
 
         ralt_a: rightalt_a {
             compatible = "zmk,behavior-mod-morph";
@@ -123,23 +138,6 @@
         };
 
         
-    };
-};
-
-/ {
-    macros {
-
-        macro_githublink: macro_githublink {
-            label = "macro_githublink";
-            compatible = "zmk,behavior-macro";
-            tap-ms = <5>;
-            #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp H &kp T &kp T &kp P &kp S &kp COLON &kp FSLH &kp FSLH>
-                , <&macro_tap &kp G &kp I &kp T &kp H &kp U &kp B &kp DOT &kp C &kp O &kp M &kp FSLH>
-                , <&macro_tap &kp W &kp N0 &kp U &kp L &kp D &kp FSLH>
-                ;
-        };
     };
 };
 
@@ -330,22 +328,6 @@
         &kp G           &kp LCTRL       &kp Z           &kp X           &kp C           &kp V         &tog GAMING       &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &trans
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
                                         &trans          &trans          &trans          &trans                          &trans          &kp BSPC        &kp RET         &trans
-//                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
-                        >;
-                };
-
-                raltgr_layer {
-                        label = "ACCENTS";
-                        sensor-bindings = <&inc_dec_kp UP DOWN>;
-                        bindings = <
-// ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &kp F20         &kp F21         &kp F22         &kp F23         &kp F24                         &trans          &trans          &trans          &trans          &trans          &trans
-// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp F15         &kp F16         &kp F17         &kp F18         &kp F19                         &trans          &trans          &trans          &trans          &trans          &trans
-// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
-// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &bt BT_CLR      &trans          &trans                          &trans          &trans          &trans          &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
