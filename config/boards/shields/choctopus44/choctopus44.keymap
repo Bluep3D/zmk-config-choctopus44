@@ -35,6 +35,9 @@
 
 / {
     behaviors {
+        
+        // AutoShift
+
         as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
             label = "AUTO_SHIFT";
@@ -44,6 +47,82 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+
+        // Keycode Mods
+
+        ralt_a: rightalt_a {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_a";
+            #binding-cells = <0>;
+            bindings = <&kp A>, <&kp F15>;
+            mods = <(MOD_RALT)>;
+        };
+
+        ralt_o: rightalt_o {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_o";
+            #binding-cells = <0>;
+            bindings = <&kp O>, <&kp F16>;
+            mods = <(MOD_RALT)>;
+        };
+
+        ralt_e: rightalt_e {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_e";
+            #binding-cells = <0>;
+            bindings = <&kp E>, <&kp F17>;
+            mods = <(MOD_RALT)>;
+        };
+
+        ralt_u: rightalt_u {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_u";
+            #binding-cells = <0>;
+            bindings = <&kp U>, <&kp F18>;
+            mods = <(MOD_RALT)>;
+        };
+
+        ralt_i: rightalt_i {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_i";
+            #binding-cells = <0>;
+            bindings = <&kp I>, <&kp F19>;
+            mods = <(MOD_RALT)>;
+        };
+
+        ralt_apos: rightalt_apostophe {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_apostrophe";
+            #binding-cells = <0>;
+            bindings = <&kp APOS>, <&kp F20>;
+            mods = <(MOD_RALT)>;
+        };
+
+        ralt_comma: rightalt_comma {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_comma";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp F21>;
+            mods = <(MOD_RALT)>;
+        };
+
+        ralt_dot: rightalt_dot {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_dot";
+            #binding-cells = <0>;
+            bindings = <&kp DOT>, <&kp F22>;
+            mods = <(MOD_RALT)>;
+        };
+
+        ralt_p: rightalt_p {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ralt_p";
+            #binding-cells = <0>;
+            bindings = <&kp P>, <&kp F23>;
+            mods = <(MOD_RALT)>;
+        };
+
+        
     };
 };
 
