@@ -9,274 +9,133 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
 
-#define DVORAK 0
-#define QWERTY 1
-#define GAMING 2
-#define NUMBER 3
-#define NAVGTN 4
+/* userspace modules */
+#include "resources/keypos_44keys.h"
+#include "resources/z_combo.h"      // Z_COMBO
+#include "resources/z_modmorph.h"   // Z_MODMORPH
+#include "resources/z_macro.h"      // macro_github
+
+#define HOST_OS 9
+#define Z_UNICODE_LEAD  &macro_tap &kp RA(U)
+#define Z_UNICODE_TRAIL &macro_tap &kp SPACE
+#include "resources/z_unicode.h"    // ZMK_UNICODE_SINGLE, ZMK_UNICODE_PAIR, requires WinCompose
+
+/* layer aliases */
+#define DVRK 0
+#define QWER 1
+#define GAME 2
+#define NMBR 3
+#define NAVI 4
+#define ACNT 5
+
+/* variables */
+#define _TIME_ZERO  0
+#define _QUIKTAP_MS 250
+#define _TAPTERM_MS 200
+#define _PRIOR_IDLE 250
+#define _COMBO_SHRT 20
+#define _COMBO_MEDM 30
+#define _COMBO_LONG 50
+
+/* miscellaneous */
+#undef Z_ALL
+#define Z_ALL       0 1 2 3 4
+#define _NUMBERS    N0 N1 N2 N3 N4 N5 N6 N7 N8 N9
+#define _NUMPAD     KP_N0 KP_N1 KP_N2 KP_N3 KP_N4 KP_N5 KP_N6 KP_N7 KP_N8 KP_N9 KP_DOT KP_EQUAL KP_DIVIDE KP_MULTIPLY KP_MINUS KP_ENTER
 
 
-#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
-
-
-&mt {
-    quick_tap_ms = <200>;
-    tapping_term_ms = <150>;
-    flavor = "balanced";
-};
-
-&lt {
-    quick_tap_ms = <200>;
-    tapping_term_ms = <150>;
-    flavor = "balanced";
-};
-
-/ {
-    macros {
-
-        macro_githublink: macro_githublink {
-            label = "macro_githublink";
-            compatible = "zmk,behavior-macro";
-            tap-ms = <5>;
-            #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp H &kp T &kp T &kp P &kp S &kp COLON &kp FSLH &kp FSLH>
-                , <&macro_tap &kp G &kp I &kp T &kp H &kp U &kp B &kp DOT &kp C &kp O &kp M &kp FSLH>
-                , <&macro_tap &kp W &kp N0 &kp U &kp L &kp D &kp FSLH>
-                ;
-        };
+/* adjustments */
+    &mt {
+        quick_tap_ms = <_QUIKTAP_MS>;
+        tapping_term_ms = <_TAPTERM_MS>;
+        flavor = "hold-preferred";  //originally balanced
+        retro-tap;                  //enabling retro-tap
     };
-};
 
+    &lt {
+        quick_tap_ms = <_QUIKTAP_MS>;
+        tapping_term_ms = <_TAPTERM_MS>;
+        flavor = "balanced";
+        retro-tap;                  //enabling retro-tap
+    };
+
+/* behaviors */
 / {
     behaviors {
-        
-        // AutoShift
-
-        as: auto_shift {
+        _lt: alternative_layer_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "AUTO_SHIFT";
+            label = "ALT_LAYERTAP";
             #binding-cells = <2>;
-            tapping_term_ms = <200>;
-            quick_tap_ms = <250>;
+            flavor = "hold-preferred";  // hold-preferred vs regular layer binds
+            quick_tap_ms = <_TIME_ZERO>;
+            tapping_term_ms = <_TAPTERM_MS>;
+            bindings = <&mo>, <&kp>;
+            retro-tap;
+        };
+    };
+};
+
+/* autoshift */
+#define AS(keycode) &z_autoshift LS(keycode) keycode
+/ {
+    behaviors {
+        z_autoshift: z_autoshift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "AUTOSHIFT";
+            #binding-cells = <2>;
             flavor = "tap-preferred";
+            quick_tap_ms = <_QUIKTAP_MS>;
+            tapping_term_ms = <_TAPTERM_MS>;
             bindings = <&kp>, <&kp>;
         };
-
-        // Mod-Morph Keycodes
-
-        ralt_a: rightalt_a {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_a";
-            #binding-cells = <0>;
-            bindings = <&kp A>, <&kp F15>;
-            mods = <(MOD_RALT)>;
-        };
-
-        ralt_o: rightalt_o {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_o";
-            #binding-cells = <0>;
-            bindings = <&kp O>, <&kp F16>;
-            mods = <(MOD_RALT)>;
-        };
-
-        ralt_e: rightalt_e {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_e";
-            #binding-cells = <0>;
-            bindings = <&kp E>, <&kp F17>;
-            mods = <(MOD_RALT)>;
-        };
-
-        ralt_u: rightalt_u {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_u";
-            #binding-cells = <0>;
-            bindings = <&kp U>, <&kp F18>;
-            mods = <(MOD_RALT)>;
-        };
-
-        ralt_i: rightalt_i {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_i";
-            #binding-cells = <0>;
-            bindings = <&kp I>, <&kp F19>;
-            mods = <(MOD_RALT)>;
-        };
-
-        ralt_apos: rightalt_apostophe {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_apostrophe";
-            #binding-cells = <0>;
-            bindings = <&kp APOS>, <&kp F20>;
-            mods = <(MOD_RALT)>;
-        };
-
-        ralt_comma: rightalt_comma {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_comma";
-            #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp F21>;
-            mods = <(MOD_RALT)>;
-        };
-
-        ralt_dot: rightalt_dot {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_dot";
-            #binding-cells = <0>;
-            bindings = <&kp DOT>, <&kp F22>;
-            mods = <(MOD_RALT)>;
-        };
-
-        ralt_p: rightalt_p {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ralt_p";
-            #binding-cells = <0>;
-            bindings = <&kp P>, <&kp F23>;
-            mods = <(MOD_RALT)>;
-        };
-
-        
     };
 };
 
-/ {
-    combos {
 
-    // Reset
+/* combos, uses z_combo.h */
+// syntax: Z_COMBO(name, combo_bindings, keypos, combo_timeout, combo_prioridle, combo_layers)
+Z_COMBO(combo_esc,          AS(ESC),        LT5 LT4,         _COMBO_SHRT, _PRIOR_IDLE, Z_ALL)
+Z_COMBO(combo_backslash,    AS(BSLH),       LB5 LB4,         _COMBO_SHRT, _PRIOR_IDLE, Z_ALL)
+Z_COMBO(combo_grave,        AS(GRAVE),      LH2 LH1,         _COMBO_SHRT, _PRIOR_IDLE, Z_ALL)
 
-        compatible = "zmk,combos";
-        combo_reset {
-            timeout-ms = <20>;
-            key-positions = <11 23 36>;
-            bindings = <&bootloader>;
-        };
+Z_COMBO(combo_copy,         &kp LC(INS),    LB4 LB3 LB2,     _COMBO_SHRT, _PRIOR_IDLE, Z_ALL)
+Z_COMBO(combo_paste,        &kp LS(INS),    LB3 LB2 LB1,     _COMBO_SHRT, _PRIOR_IDLE, Z_ALL)
 
-    // Key swaps
+Z_COMBO(combo_lctrl,        &sk LCTRL,      LM1 LM2,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_rctrl,        &sk LCTRL,      RM1 RM2,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_lctrlshift,   &sk LS(LCTRL),  LM1 LM2 LM3,     _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_rctrlshift,   &sk LS(LCTRL),  RM1 RM2 RM3,     _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
 
-        compatible = "zmk,combos";
-        combo_esc {
-            timeout-ms = <20>;
-            key-positions = <0 1>;
-            bindings = <&kp ESC>;
-        };
+Z_COMBO(combo_locknum0,     &kp KP_NLCK,    RM5 RT5,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_lockcaps,     &kp CLCK,       RM5 RB5,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_lockscrl,     &kp SLCK,       RT5 RB5,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
 
-        combo_backslash {
-            timeout-ms = <20>;
-            key-positions = <24 25>;
-            bindings = <&kp BSLH>;
-        };
+Z_COMBO(combo_layergame,    &tog GAME,      LH0 RH0,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER GAME)
+Z_COMBO(combo_layerqwer,    &tog QWER,      LH2 RH2,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
 
-        combo_grave {
-            timeout-ms = <20>;
-            key-positions = <38 39>;
-            bindings = <&kp GRAVE>;
-        };
+Z_COMBO(combo_bltthclr,     &bt BT_CLR,     RT0 RB0,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_bltth1,       &bt BT_SEL 0,   RT4 RB4,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_bltth2,       &bt BT_SEL 1,   RT3 RB3,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_bltth3,       &bt BT_SEL 2,   RT2 RB2,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_bltth4,       &bt BT_SEL 3,   RT1 RB1,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
 
-    // Locks
+Z_COMBO(combo_github,       &macro_github,  LT5 RT5,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER) // uses z_macro.h
+Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
 
-        combo_numlock {
-            timeout-ms = <30>;
-            key-positions = <0 11>;
-            bindings = <&kp KP_NLCK>;
-        };
 
-        combo_capslock {
-            timeout-ms = <30>;
-            key-positions = <12 23>;
-            bindings = <&kp CLCK>;
-        };
+/* unicode, uses z_unicode.h, requires WinCompose */
+// syntax for regular: #define ZMK_UNICODE_SINGLE(name, L0, L1, L2, L3) 
+// syntax for low/upp: #define ZMK_UNICODE_PAIR(name, L0, L1, L2, L3, U0, U1, U2, U3)
+ZMK_UNICODE_PAIR(hu_a_a,        N0, N0,  E, N1,         N0, N0,  C, N1) // á/Á
+ZMK_UNICODE_PAIR(hu_e_a,        N0, N0,  E, N9,         N0, N0,  C, N9) // é/É
+ZMK_UNICODE_PAIR(hu_i_a,        N0, N0,  E,  D,         N0, N0,  C,  D) // í/Í
+ZMK_UNICODE_PAIR(hu_o_a,        N0, N0,  F, N3,         N0, N0,  D, N3) // ó/Ó
+ZMK_UNICODE_PAIR(hu_u_a,        N0, N0,  F,  A,         N0, N0,  D,  A) // ú/Ú
+ZMK_UNICODE_PAIR(hu_o_di,       N0, N0,  F, N6,         N0, N0,  D, N6) // ö/Ö
+ZMK_UNICODE_PAIR(hu_o_da,       N0, N1, N5, N1,         N0, N1, N5, N0) // ő/Ő
+ZMK_UNICODE_PAIR(hu_u_di,       N0, N0,  F,  C,         N0, N0,  D,  C) // ü/Ü
+ZMK_UNICODE_PAIR(hu_u_da,       N0, N1, N7, N1,         N0, N1, N7, N0) // ű/Ű
 
-        combo_scrolllock {
-            timeout-ms = <30>;
-            key-positions = <24 36>;
-            bindings = <&kp SLCK>;
-        };
-
-    // Copy-Paste
-
-        combo_copy {
-            timeout-ms = <20>;
-            key-positions = <25 26 27>;
-            bindings = <&kp LC(INS)>;
-        };
-
-        combo_paste {
-            timeout-ms = <20>;
-            key-positions = <26 27 28>;
-            bindings = <&kp LS(INS)>;
-        };
-
-    // Modifiers
-
-        combo_lctrl {
-            timeout-ms = <20>;
-            key-positions = <14 15 16>;
-            bindings = <&sk LCTRL>;
-        };
-        combo_lctrlshift {
-            timeout-ms = <20>;
-            key-positions = <13 14 15 16>;
-            bindings = <&sk LS(LCTRL)>;
-        };
-
-        combo_rctrl {
-            timeout-ms = <20>;
-            key-positions = <19 20 21>;
-            bindings = <&sk LCTRL>;
-        };
-        combo_rctrlshift {
-            timeout-ms = <20>;
-            key-positions = <19 20 21 22>;
-            bindings = <&sk LS(LCTRL)>;
-        };
-
-    // Layers
-
-        combo_layertogglegaming {
-            timeout-ms = <20>;
-            key-positions = <41 43>;
-            bindings = <&tog GAMING>;
-        };
-
-    // Bluetooth
-
-        combo_bluetoothclear {
-            timeout-ms = <20>;
-            key-positions = <5 29>;
-            bindings = <&bt BT_CLR>;
-        };
-        combo_bluetooth1 {
-            timeout-ms = <20>;
-            key-positions = <1 25>;
-            bindings = <&bt BT_SEL 0>;
-        };
-        combo_bluetooth2 {
-            timeout-ms = <20>;
-            key-positions = <2 26>;
-            bindings = <&bt BT_SEL 1>;
-        };
-        combo_bluetooth3 {
-            timeout-ms = <20>;
-            key-positions = <3 27>;
-            bindings = <&bt BT_SEL 2>;
-        };
-        combo_bluetooth4 {
-            timeout-ms = <20>;
-            key-positions = <4 28>;
-            bindings = <&bt BT_SEL 3>;
-        };
-
-    // Other
-
-        combo_githublink {
-            timeout-ms = <20>;
-            key-positions = <6 18 31>;
-            bindings = <&macro_githublink>;
-        };
-    };
-};
 
 
 
@@ -285,81 +144,97 @@
                 compatible = "zmk,keymap";
 
                 dvorak_layer {
-                        label = "DVORAK";
+                        label = "DVRK";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-     &lt NAVGTN TAB     &ralt_apos      &ralt_comma     &ralt_dot       &ralt_p         &kp Y                           &kp F           &kp G           &kp C           &kp R           &kp L           &kp FSLH
+      &lt NAVI TAB      &kp APOS        &kp COMMA       &kp DOT         &kp P           &kp Y                           &kp F           &kp G           &kp C           &kp R           &kp L           &kp FSLH
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &kp LCTRL       &ralt_a         &ralt_o         &ralt_e         &ralt_u         &ralt_i                         &kp D           &kp H           &kp T           &kp N           &kp S           &kp MINUS
+        &kp LCTRL       &kp A           &kp O           &kp E           &kp U           &kp I                           &kp D           &kp H           &kp T           &kp N           &kp S           &kp MINUS
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &kp LSHFT       &kp SEMI        &kp Q           &kp J           &kp K           &kp X         &tog QWERTY       &kp B           &kp M           &kp W           &kp V           &kp Z       &mt RSHFT EQUAL
+        &kp LSHFT       &kp SEMI        &kp Q           &kp J           &kp K           &kp X          &tog QWER        &kp B           &kp M           &kp W           &kp V           &kp Z       &mt LSHFT EQUAL
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &kp LALT        &kp SPACE   &lt NUMBER SPACE                &lt NAVGTN BSPC     &kp RALT     &mt LGUI RET       &trans
+                                        &trans          &kp LALT        &kp SPACE   &_lt NMBR SPACE                  &lt NAVI BSPC      &sl ACNT      &mt LGUI RET      &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
 
                 qwerty_layer {
-                        label = "QWERTY";
+                        label = "QWER";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &kp Q           &kp W           &kp E           &kp R           &kp T                           &kp Y           &kp U           &kp I           &kp O           &kp P           &kp LBKT
+        &trans          &kp Q           &kp W           &kp E           &kp R           &kp T                           &kp Y           &kp U           &kp I           &kp O           &kp P       &mt LGUI LBKT
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp A           &kp S           &kp D           &kp F           &kp G                           &kp H           &kp J           &kp K           &kp L           &kp SEMI        &kp APOS
-// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp Z           &kp X           &kp C           &kp V           &kp B         &tog QWERTY       &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH    &mt RSHFT RBKT
-// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &trans          &trans          &trans                          &trans          &trans          &trans          &trans
+        &trans          &kp A           &kp S           &kp D           &kp F           &kp G                           &kp H           &kp J           &kp K           &kp L           &kp SEMI    &mt LCTRL APOS
+// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+        &trans          &kp Z           &kp X           &kp C           &kp V           &kp B          &tog QWER        &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH    &mt LSHFT RBKT
+// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
+                                        &trans          &trans          &trans          &trans                          &trans          &kp LSHFT       &trans          &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
 
                 gaming_layer {
-                        label = "GAMING";
+                        label = "GAME";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &kp T           &kp Q           &kp W           &kp E           &kp R                           &kp Y           &kp U           &kp I           &kp O           &kp P           &trans
+        &trans          &kp T           &kp Q           &kp W           &kp E           &kp R                           &kp Y           &kp PG_UP       &kp UP          &kp PG_DN       &kp P           &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &kp TAB         &kp LSHFT       &kp A           &kp S           &kp D           &kp F                           &kp H           &kp J           &kp K           &kp L           &kp SEMI        &trans
-// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &kp G           &kp LCTRL       &kp Z           &kp X           &kp C           &kp V         &tog GAMING       &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &trans
-// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &trans          &trans          &trans                          &trans          &kp BSPC        &kp RET         &trans
+        &kp I           &kp LCTRL       &kp A           &kp S           &kp D           &kp F                           &kp H           &kp LEFT        &kp DOWN        &kp RIGHT       &kp SEMI        &trans
+// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+        &kp G           &kp LSHFT       &kp Z           &kp X           &kp C           &kp V          &tog GAME        &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &kp LSHFT
+// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
+                                        &trans          &trans          &trans          &trans                          &trans          &tog GAME       &trans          &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
 
                 number_layer {
-                        label = "NUMBER";
+                        label = "NMBR";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          AS(N1)          AS(N2)          AS(N3)          AS(N4)          AS(N5)                          &kp LPAR        AS(N7)          AS(N8)          AS(N9)          &kp RPAR        &trans
+        &trans          AS(N1)          AS(N2)          AS(N3)          AS(N4)          AS(N5)                          AS(LPAR)        AS(N7)          AS(N8)          AS(N9)          AS(RPAR)        AS(FSLH)
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp LGUI        &kp LALT        &kp LCTRL       &kp LSHFT       &kp F13                         &kp LBKT        AS(N4)          AS(N5)          AS(N6)          &kp RBKT        &trans
-// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp SEMI        &kp DQT         &kp COMMA       &kp DOT         &kp KP_DOT      &trans          &kp GRAVE       AS(N1)          AS(N2)          AS(N3)          &kp BSLH        &trans
-// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
+        &trans          &kp LGUI        &kp LALT        &kp LCTRL       &kp LSHFT       &kp F13                         AS(LBKT)        AS(N4)          AS(N5)          AS(N6)          AS(RBKT)        AS(MINUS)
+// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+        &trans          AS(SEMI)        AS(APOS)        AS(COMMA)       AS(DOT)         &kp KP_DOT      &trans          AS(GRAVE)       AS(N1)          AS(N2)          AS(N3)          AS(BSLH)        AS(EQUAL)
+// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
                                         &trans          &trans          &trans          &trans                          &trans          AS(N0)          &kp KP_DOT      &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
 
                 navigation_layer {
-                        label = "NAVGTN";
+                        label = "NAVI";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
         &trans          &kp F1          &kp F2          &kp F3          &kp F4          &kp F5                      &kp PAUSE_BREAK     &kp PG_UP       &kp UP          &kp PG_DN       &kp HOME        &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
         &trans        &mt LGUI F5     &mt LALT F6     &mt LCTRL F7    &mt LSHFT F8      &kp F13                         &kp PSCRN       &kp LEFT        &kp DOWN        &kp RIGHT       &kp END         &trans
-// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp F9          &kp F10         &kp F11         &kp F12         &kp F14         &trans          &kp INS       &kp C_VOL_DN      &kp C_MUTE    &kp C_VOL_UP      &kp C_PP        &trans
-// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
+// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+        &trans          &kp F9          &kp F10         &kp F11         &kp F12         &kp F14         &trans          &kp INS       &kp C_VOL_DN      &kp C_MUTE    &kp C_VOL_UP      &kp C_PP        &kp LSHFT
+// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
                                         &trans          &trans          &trans          &trans                          &trans          &kp DEL         &trans          &trans
+//                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
+                        >;
+                };
+
+                accent_layer {
+                        label = "ACNT";
+                        sensor-bindings = <&inc_dec_kp UP DOWN>;
+                        bindings = <
+// ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
+        &trans          &hu_o_di        &hu_o_da        &hu_u_di        &hu_u_da        &trans                          &trans          &trans          &trans          &trans          &trans          &trans
+// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+        &trans          &hu_a_a         &hu_o_a         &hu_e_a         &hu_u_a         &hu_i_a                         &trans          &trans          &trans          &trans          &trans          &trans
+// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &kp LSHFT
+// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┤───────────────├───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
+                                        &trans          &trans          &trans          &trans                          &trans          &trans          &kp RALT        &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
