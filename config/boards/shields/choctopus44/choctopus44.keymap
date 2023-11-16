@@ -39,7 +39,7 @@
 
 /* miscellaneous */
 #undef Z_ALL
-#define Z_ALL       0 1 2 3 4
+#define Z_ALL       DVRK QWER GAME NMBR NAVI
 #define _NUMBERS    N0 N1 N2 N3 N4 N5 N6 N7 N8 N9
 #define _NUMPAD     KP_N0 KP_N1 KP_N2 KP_N3 KP_N4 KP_N5 KP_N6 KP_N7 KP_N8 KP_N9 KP_DOT KP_EQUAL KP_DIVIDE KP_MULTIPLY KP_MINUS KP_ENTER
 
@@ -164,9 +164,9 @@ ZMK_UNICODE_PAIR(hu_u_da,       N0, N1, N7, N1,         N0, N1, N7, N0) // ű/Ű
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &kp Q           &kp W           &kp E           &kp R           &kp T                           &kp Y           &kp U           &kp I           &kp O           &kp P       &mt LGUI LBKT
+        &trans          &kp Q           &kp W           &kp E           &kp R           &kp T                           &kp Y           &kp U           &kp I           &kp O           &kp P           &kp LBKT
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp A           &kp S           &kp D           &kp F           &kp G                           &kp H           &kp J           &kp K           &kp L           &kp SEMI    &mt LCTRL APOS
+        &trans          &kp A           &kp S           &kp D           &kp F           &kp G                           &kp H           &kp J           &kp K           &kp L           &kp SEMI        &kp APOS
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
         &trans          &kp Z           &kp X           &kp C           &kp V           &kp B          &tog QWER        &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH    &mt LSHFT RBKT
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
