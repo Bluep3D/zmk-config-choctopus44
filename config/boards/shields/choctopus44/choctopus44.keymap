@@ -82,9 +82,6 @@ Z_COMBO(combo_locknum0,     &kp KP_NLCK,    RM5 RT5,         _COMBO_MEDM, _PRIOR
 Z_COMBO(combo_lockcaps,     &kp CLCK,       RM5 RB5,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
 Z_COMBO(combo_lockscrl,     &kp SLCK,       RT5 RB5,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
 
-Z_COMBO(combo_layergame,    &tog GAME,      LH0 RH0,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_layerqwer,    &tog QWER,      LH2 RH2,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
-
 Z_COMBO(combo_bltthclr,     &bt BT_CLR,     RT0 RB0,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
 Z_COMBO(combo_bltth1,       &bt BT_SEL 0,   RT4 RB4,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
 Z_COMBO(combo_bltth2,       &bt BT_SEL 1,   RT3 RB3,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
