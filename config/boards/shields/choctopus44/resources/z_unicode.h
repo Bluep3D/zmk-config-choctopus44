@@ -8,6 +8,16 @@
  * Z_UNICODE_TRAIL for custom binds (assuming HOST_OS == 9)
  */
 
+
+/* // EXAMPLE
+    #define HOST_OS 9
+    #define Z_UNICODE_LEAD  &macro_tap &kp RA(U)
+    #define Z_UNICODE_TRAIL &macro_tap &kp SPACE
+    #include "resources/z_unicode.h"
+    #include "resources/z_unicode_HUNchars.h"
+*/
+
+
 /* ZMK_UNICODE */
 
 #if !defined OS_UNICODE_LEAD
@@ -68,3 +78,4 @@
     UC_MACRO(name ## _lower, &kp L0 &kp L1 &kp L2 &kp L3) \
     UC_MACRO(name ## _upper, &kp U0 &kp U1 &kp U2 &kp U3) \
     UC_MODMORPH(name, &name ## _lower, &name ## _upper)
+

@@ -21,11 +21,12 @@
 #include "resources/z_unicode.h"    // ZMK_UNICODE_SINGLE, ZMK_UNICODE_PAIR, requires WinCompose
 
 /* layer aliases */
-#define QWER 0
-#define NMBR 1
-#define NAVI 2
-#define FUNC 3
-#define SYST 4
+#define DVRK 0
+#define QWER 1
+#define GAME 2
+#define NMBR 3
+#define NAVI 4
+#define ACNT 5
 
 /* variables */
 #define _TIME_ZERO  0
@@ -38,7 +39,7 @@
 
 /* miscellaneous */
 #undef Z_ALL
-#define Z_ALL       QWER NMBR NAVI FUNC SYST
+#define Z_ALL       DVRK QWER GAME NMBR NAVI
 #define _NUMBERS    N0 N1 N2 N3 N4 N5 N6 N7 N8 N9
 #define _NUMPAD     KP_N0 KP_N1 KP_N2 KP_N3 KP_N4 KP_N5 KP_N6 KP_N7 KP_N8 KP_N9 KP_DOT KP_EQUAL KP_DIVIDE KP_MULTIPLY KP_MINUS KP_ENTER
 
@@ -79,25 +80,25 @@ Z_COMBO(combo_grave,        AS(GRAVE),      LH2 LH1,         _COMBO_MEDM, _PRIOR
 Z_COMBO(combo_copy,         &kp LC(INS),    LB4 LB3 LB2,     _COMBO_MEDM, _PRIOR_IDLE, Z_ALL)
 Z_COMBO(combo_paste,        &kp LS(INS),    LB3 LB2 LB1,     _COMBO_MEDM, _PRIOR_IDLE, Z_ALL)
 
-Z_COMBO(combo_lctrl,        &sk LCTRL,      LM1 LM2,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_rctrl,        &sk LCTRL,      RM1 RM2,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_lctrlshift,   &sk LS(LCTRL),  LM1 LM2 LM3,     _COMBO_SHRT, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_rctrlshift,   &sk LS(LCTRL),  RM1 RM2 RM3,     _COMBO_SHRT, _PRIOR_IDLE, QWER)
+Z_COMBO(combo_lctrl,        &sk LCTRL,      LM1 LM2,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_rctrl,        &sk LCTRL,      RM1 RM2,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_lctrlshift,   &sk LS(LCTRL),  LM1 LM2 LM3,     _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_rctrlshift,   &sk LS(LCTRL),  RM1 RM2 RM3,     _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
 
-Z_COMBO(combo_locknum0,     &kp KP_NLCK,    RM5 RT5,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_lockcaps,     &kp CLCK,       RM5 RB5,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_lockscrl,     &kp SLCK,       RT5 RB5,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
+Z_COMBO(combo_locknum0,     &kp KP_NLCK,    RM5 RT5,         _COMBO_MEDM, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_lockcaps,     &kp CLCK,       RM5 RB5,         _COMBO_MEDM, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_lockscrl,     &kp SLCK,       RT5 RB5,         _COMBO_MEDM, _PRIOR_IDLE, DVRK QWER)
 
-Z_COMBO(combo_layergame,    &tog GAME,      LH0 RH0,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_layerqwer,    &tog QWER,      LH2 RH2,         _COMBO_MEDM, _PRIOR_IDLE, QWER)
+Z_COMBO(combo_layergame,    &tog GAME,      LH0 RH0,         _COMBO_MEDM, _PRIOR_IDLE, DVRK QWER GAME)
+Z_COMBO(combo_layerqwer,    &tog QWER,      LH2 RH2,         _COMBO_MEDM, _PRIOR_IDLE, DVRK QWER)
 
-Z_COMBO(combo_bltthclr,     &bt BT_CLR,     RT0 RB0,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_bltth1,       &bt BT_SEL 0,   RT4 RB4,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_bltth2,       &bt BT_SEL 1,   RT3 RB3,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_bltth3,       &bt BT_SEL 2,   RT2 RB2,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
-Z_COMBO(combo_bltth4,       &bt BT_SEL 3,   RT1 RB1,         _COMBO_SHRT, _PRIOR_IDLE, QWER)
+Z_COMBO(combo_bltthclr,     &bt BT_CLR,     RT0 RB0,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_bltth1,       &bt BT_SEL 0,   RT4 RB4,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_bltth2,       &bt BT_SEL 1,   RT3 RB3,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_bltth3,       &bt BT_SEL 2,   RT2 RB2,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
+Z_COMBO(combo_bltth4,       &bt BT_SEL 3,   RT1 RB1,         _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
 
-Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR_IDLE, QWER)
+Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR_IDLE, DVRK QWER)
 
 
 /* unicode, uses z_unicode.h, requires WinCompose */
@@ -121,81 +122,97 @@ ZMK_UNICODE_PAIR(hu_u_da,       N0, N1, N7, N1,         N0, N1, N7, N0) // ű/Ű
                 compatible = "zmk,keymap";
 
                 dvorak_layer {
-                        label = "QWER";
+                        label = "DVRK";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &kp TAB         &kp Q           &kp W           &kp E           &kp R           &kp T                           &kp Y           &kp U           &kp I           &kp O           &kp P           &kp RET
+      &lt NAVI TAB      &kp APOS        &kp COMMA       &kp DOT         &kp P           &kp Y                           &kp F           &kp G           &kp C           &kp R           &kp L           &kp FSLH
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &kp LCTRL       &kp A           &kp S           &kp D           &kp F           &kp G                           &kp H           &kp J           &kp K           &kp L           &kp SEMI        &kp APOS
+        &kp LCTRL       &kp A           &kp O           &kp E           &kp U           &kp I                           &kp D           &kp H           &kp T           &kp N           &kp S           &kp MINUS
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &kp LSHFT       &kp Z           &kp X           &kp C           &kp V           &kp B           &trans          &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &kp LALT
+        &kp LSHFT       &kp SEMI        &kp Q           &kp J           &kp K           &kp X          &tog QWER        &kp B           &kp M           &kp W           &kp V           &kp Z       &mt LSHFT EQUAL
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &kp LGUI        &kp LALT     &lt NAVI BSPC   &lt FUNC SPACE                  &lt NMBR SPACE     &kp RSHFT       &kp RALT        &trans
+                                        &trans          &kp LALT        &kp SPACE   &_lt NMBR SPACE                  &lt NAVI BSPC      &sl ACNT      &mt LGUI RET      &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
 
                 qwerty_layer {
-                        label = "NMBR";
+                        label = "QWER";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &trans          &trans          &trans          &trans          &trans                          &kp KP_N7       &kp KP_N8       &kp KP_N9       &kp KP_NLCK     &trans          &trans
+        &trans          &kp Q           &kp W           &kp E           &kp R           &kp T                           &kp Y           &kp U           &kp I           &kp O           &kp P           &kp LBKT
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans                          &kp KP_N4       &kp KP_N5       &kp KP_N6       &kp CLCK        &trans          &trans
+        &trans          &kp A           &kp S           &kp D           &kp F           &kp G                           &kp H           &kp J           &kp K           &kp L           &kp SEMI        &kp APOS
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &kp KP_N1       &kp KP_N2       &kp KP_N3       &kp KP_DOT      &trans          &trans
+        &trans          &kp Z           &kp X           &kp C           &kp V           &kp B          &tog QWER        &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH    &mt LSHFT RBKT
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &trans          &trans          &trans                          &trans          &trans          &kp KP_N0       &trans
+                                        &trans          &trans          &trans          &trans                          &trans          &kp LSHFT       &trans          &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
 
                 gaming_layer {
-                        label = "NAVI";
+                        label = "GAME";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &kp N1          &kp N2          &kp N3          &kp N4          &kp N5                          &trans          &trans          &trans          &trans          &trans          &kp PSCRN
+        &trans          &kp T           &kp Q           &kp W           &kp E           &kp R                           &kp Y           &kp PG_UP       &kp UP          &kp PG_DN       &kp P           &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp N6          &kp N7          &kp N8          &kp N9          &kp GRAVE                       &trans          &kp UP          &trans          &trans          &trans          &kp HOME
+        &kp I           &kp LCTRL       &kp A           &kp S           &kp D           &kp F                           &kp H           &kp LEFT        &kp DOWN        &kp RIGHT       &kp SEMI        &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &kp LEFT        &kp DOWN        &kp RIGHT       &trans          &kp DEL         &kp END
+        &kp G           &kp LSHFT       &kp Z           &kp X           &kp C           &kp V          &tog GAME        &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &kp LSHFT
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &trans          &trans          &trans                          &trans          &trans          &trans          &trans
+                                        &trans          &trans          &trans          &trans                          &trans          &tog GAME       &trans          &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
 
                 number_layer {
-                        label = "FUNC";
+                        label = "NMBR";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &kp F1          &kp F2          &kp F3          &kp F4          &kp ESC                         &trans          &kp RBKT        &kp NUBS        &kp EQUAL       &trans          &trans
+        &trans          AS(N1)          AS(N2)          AS(N3)          AS(N4)          AS(N5)                          AS(LPAR)        AS(N7)          AS(N8)          AS(N9)          AS(RPAR)        AS(FSLH)
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp F5          &kp F6          &kp F7          &kp F8          &kp BSPC                        &trans          &kp MINUS       &trans          &kp N0          &trans          &trans
+        &trans          &kp LGUI        &kp LALT        &kp LCTRL       &kp LSHFT       &kp F13                         AS(LBKT)        AS(N4)          AS(N5)          AS(N6)          AS(RBKT)        AS(MINUS)
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp F9          &kp F10         &kp F11         &kp F12         &kp RET         &trans          &trans          &kp NUHS        &trans          &kp LBKT        &trans          &trans
+        &trans          AS(SEMI)        AS(APOS)        AS(COMMA)       AS(DOT)         &kp KP_DOT      &trans          AS(GRAVE)       AS(N1)          AS(N2)          AS(N3)          AS(BSLH)        AS(EQUAL)
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &trans          &trans          &trans                          &trans          &trans          &trans          &trans
+                                        &trans          &trans          &trans          &trans                          &trans          AS(N0)          &kp KP_DOT      &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
 
                 navigation_layer {
-                        label = "SYST";
+                        label = "NAVI";
                         sensor-bindings = <&inc_dec_kp UP DOWN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &trans          &trans          &trans          &trans          &trans                          &trans          &trans          &trans          &trans          &trans          &trans     
+        &trans          &kp F1          &kp F2          &kp F3          &kp F4          &kp F5                      &kp PAUSE_BREAK     &kp PG_UP       &kp UP          &kp PG_DN       &kp HOME        &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans                          &trans          &trans          &trans          &trans          &trans          &trans     
+        &trans        &mt LGUI F5     &mt LALT F6     &mt LCTRL F7    &mt LSHFT F8      &kp F13                         &kp PSCRN       &kp LEFT        &kp DOWN        &kp RIGHT       &kp END         &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans     
+        &trans          &kp F9          &kp F10         &kp F11         &kp F12         &kp F14         &trans          &kp INS       &kp C_VOL_DN      &kp C_MUTE    &kp C_VOL_UP      &kp C_PP        &kp LSHFT
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &trans          &trans          &trans                          &trans          &trans          &trans          &trans
+                                        &trans          &trans          &trans          &trans                          &trans          &kp DEL         &trans          &trans
+//                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
+                        >;
+                };
+
+                accent_layer {
+                        label = "ACNT";
+                        sensor-bindings = <&inc_dec_kp UP DOWN>;
+                        bindings = <
+// ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
+        &trans          &hu_o_di        &hu_o_da        &hu_u_di        &hu_u_da        &trans                          &trans          &trans          &trans          &trans          &trans          &trans
+// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+        &trans          &hu_a_a         &hu_o_a         &hu_e_a         &hu_u_a         &hu_i_a                         &trans          &trans          &trans          &trans          &trans          &trans
+// ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &kp LSHFT
+// ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
+                                        &trans          &trans          &trans          &trans                          &trans          &trans          &kp RALT        &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
