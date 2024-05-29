@@ -113,7 +113,7 @@ Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR
 
                 number_layer {
                         label = "NMBR";
-                        sensor-bindings = <&inc_dec_kp UP DOWN>;
+                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
         &trans          &trans          &trans          &trans          &trans          &trans                          &kp KP_N7       &kp KP_N8       &kp KP_N9       &kp KP_NLCK     &trans          &trans
