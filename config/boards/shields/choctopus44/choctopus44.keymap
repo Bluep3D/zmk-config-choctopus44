@@ -145,7 +145,7 @@ Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR
 
                 functn_layer {
                         label = "FUNC";
-                        sensor-bindings = <&inc_dec_kp UP DOWN>;
+                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
         &trans          &kp F1          &kp F2          &kp F3          &kp F4          &kp ESC                         &trans          &kp RBKT        &kp NUBS        &kp EQUAL       &trans          &trans
