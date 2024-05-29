@@ -97,7 +97,7 @@ Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR
 
                 qwerty_layer {
                         label = "QWER";
-                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+                        sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
         &kp TAB         &kp Q           &kp W           &kp E           &kp R           &kp T                           &kp Y           &kp U           &kp I           &kp O           &kp P           &kp RET
@@ -113,7 +113,7 @@ Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR
 
                 number_layer {
                         label = "NMBR";
-                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+                        sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
         &trans          &trans          &trans          &trans          &trans          &trans                          &kp KP_N7       &kp KP_N8       &kp KP_N9       &kp KP_NLCK     &trans          &trans
@@ -129,7 +129,7 @@ Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR
 
                 navgtn_layer {
                         label = "NAVI";
-                        sensor-bindings = <&inc_dec_kp UP DOWN>;
+                        sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
         &trans          &kp N1          &kp N2          &kp N3          &kp N4          &kp N5                          &trans          &trans          &trans          &trans          &trans          &kp PSCRN
@@ -145,7 +145,7 @@ Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR
 
                 functn_layer {
                         label = "FUNC";
-                        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+                        sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
         &trans          &kp F1          &kp F2          &kp F3          &kp F4          &kp ESC                         &trans          &kp RBKT        &kp NUBS        &kp EQUAL       &trans          &trans
