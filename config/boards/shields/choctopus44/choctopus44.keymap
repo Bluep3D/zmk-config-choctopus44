@@ -132,13 +132,13 @@ Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR
                         sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &kp N1          &kp N2          &kp N3          &kp N4          &kp N5                          &trans          &trans          &trans          &trans          &trans          &kp PSCRN
+        &trans          &kp N1          &kp N2          &kp N3          &kp N4          &kp N5                          &trans          &kp RBKT         &kp NUBS       &kp EQUAL      &trans          &kp PSCRN
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &kp N6          &kp N7          &kp N8          &kp N9          &kp GRAVE                       &trans          &kp UP          &trans          &trans          &trans          &kp HOME
+        &trans          &kp N6          &kp N7          &kp N8          &kp N9          &kp GRAVE                       &trans          &kp MINUS          &trans         &kp N0          &trans          &kp HOME
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &kp LEFT        &kp DOWN        &kp RIGHT       &trans          &kp DEL         &kp END
+        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &kp UP        &kp NUHS             &trans       &kp LBKT          &kp DEL         &kp END
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                        &trans          &trans          &trans          &trans                          &trans          &trans          &trans          &trans
+                                        &trans          &trans          &trans          &trans                          &kp LEFT        &kp DOWN        &kp RIGHT         &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
                         >;
                 };
