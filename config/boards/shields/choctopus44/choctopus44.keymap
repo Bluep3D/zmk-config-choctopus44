@@ -116,11 +116,11 @@ Z_COMBO(combo_reset,        &bootloader,    RT0 RM0 RB0,     _COMBO_SHRT, _PRIOR
                         sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
                         bindings = <
 // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮               ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-        &trans          &trans          &trans          &trans          &trans          &trans                          &kp KP_N7       &kp KP_N8       &kp KP_N9       &kp KP_NLCK     &trans          &trans
+        &trans          &trans          &trans          &trans          &trans          &trans                          &trans       &kp KP_N7       &kp KP_N8       &kp KP_N9     &kp KP_NLCK          &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤               ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans                          &kp KP_N4       &kp KP_N5       &kp KP_N6       &kp CLCK        &trans          &trans
+        &trans          &trans          &trans          &trans          &trans          &trans                          &trans       &kp KP_N4       &kp KP_N5       &kp KP_N6        &kp CLCK          &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &kp KP_N1       &kp KP_N2       &kp KP_N3       &kp KP_DOT      &trans          &trans
+        &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans       &kp KP_N1       &kp KP_N2       &kp KP_N3      &kp KP_DOT          &trans
 // ╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
                                         &trans          &trans          &trans          &trans                          &trans          &trans          &kp KP_N0       &trans
 //                                 ╰───────────────┴───────────────┴───────────────┴───────────────╯               ╰───────────────┴───────────────┴───────────────┴───────────────╯
